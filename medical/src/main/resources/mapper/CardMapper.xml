@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haite.medical.biz.mapper.CardMapper">
+    <select id="queryPage" resultType="com.haite.medical.api.vo.CardVo">
+   select
+   card.id,
+   card.name,
+   card.gender,
+   card.phone,
+   card.birth,
+   card.open,
+   card.project,
+   card.remark
+   from card
+        <where>
+            <if test="query.name!='' and query.name!=null">
+                AND card.name Like concat('%',#{query.name},'%')
+            </if>
+            <if test="query.gender!=null and query.gender!=''">
+                AND card.gender = #{query.gender}
+            </if>
+            <if test="query.phone!='' and query.phone!=null">
+                AND card.phone Like concat('%',#{query.phone},'%')
+            </if>
+            AND card.del_flag = 0
+        </where>
+    </select>
+    <select id="getStimDetialId" resultType="com.haite.medical.api.vo.detail.CardDetailVo">
+      select * from card where card.id = #{id}
+    </select>
+    <insert id="saveCard">
+        INSERT INTO card (card.name, card.gender, card.birth, card.phone, card.open, card.project, card.remark, card.del_flag)
+        VALUES (#{card1.name}, #{card1.gender},#{card1.birth}, #{card1.phone}, #{card1.open}, #{card1.project}, #{card1.remark}, #{card1.delFlag});
+    </insert>
+
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haite.medical.biz.mapper.UserMapper">
+
+    <select id="getPassword" resultType="java.lang.String">
+        SELECT user.password FROM user WHERE user.username=#{username}
+</select>
+    <insert id="saveCard">
+        INSERT INTO card (card.name, card.gender, card.birth, card.phone, card.open, card.project, card.remark, card.del_flag)
+        VALUES (#{card1.name}, #{card1.gender},#{card1.birth}, #{card1.phone}, #{card1.open}, #{card1.project}, #{card1.remark}, #{card1.delFlag});
+    </insert>
+</mapper>

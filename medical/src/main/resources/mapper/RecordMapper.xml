@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haite.medical.biz.mapper.RecordMapper">
+
+    <select id="selectAll" resultType="com.haite.medical.api.vo.RecordVo">
+        SELECT * FROM record WHERE record.del_flag = 0 AND record.card_id = #{id}
+    </select>
+    <insert id="saveRecord">
+        INSERT INTO record (record.card_id,record.use_date,record.project,record.remain,record.remark,record.name,record.del_flag)
+        VALUES (#{record1.cardId},#{record1.useDate},#{record1.project},#{record1.remain},#{record1.remark},#{record1.name},#{record1.delFlag});
+    </insert>
+</mapper>
